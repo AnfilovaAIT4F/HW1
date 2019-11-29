@@ -88,10 +88,16 @@ WITH (
 )
 TABLESPACE pg_default;
 
+-- Комментарий:
+-- Удалить скрытые столбцы не только можно, но и нужно.
+
 ALTER TABLE public.bond_description_task
     OWNER to postgres;
 --Загрузка данных во 2 таблицу	
 copy public.bond_description_task  FROM 'C:/Users/Public/bond_description_task.csv' DELIMITER ';' CSV HEADER ENCODING 'WIN 1251';
+
+-- Комментарий:
+-- Данные не загружаются из-за несоответствия формату полей в БД. Убедитесь, что Вы задокументировали все преобразования данных до загрузки в БД.м
 
 --Создание 3 таблицы
 DROP TABLE if exists public.quotes_task
@@ -145,4 +151,5 @@ ALTER TABLE public.quotes_task
 copy public.quotes_task 
 FROM 'C:/Users/Public/quotes_task.csv' DELIMITER ';' CSV HEADER  ENCODING 'WIN 1251';
 
-
+-- Комментарий:
+-- Данные не загружаются из-за несоответствия формату полей в БД. Убедитесь, что Вы задокументировали все преобразования данных до загрузки в БД. Кроме того, очевидно, что формат int не подходящий для поля TIME. Проверьте для всех всех таблиц.
