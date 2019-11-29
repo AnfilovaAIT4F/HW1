@@ -9,6 +9,10 @@ FROM public.listing_task
 
 INNER JOIN public.quotes_task ON public.quotes_task."ID"=public.listing_task."ID"
 WHERE "Platform"='Московская Биржа' AND public.quotes_task."BOARDID"='EQCC' AND public.quotes_task."BOARDID"='Main';
+
+-- Комментарий:
+--  public.quotes_task."BOARDID"='EQCC' AND public.quotes_task."BOARDID"='Main' даст пустое множество, т.к. одно и то же поле не может иметь два значения.
+
 --тут бы подзапросом с найденным nunratio
 -- Число наблюдений для каждой облигации, где нет цены
 SELECT "ID", count("BID")
@@ -16,6 +20,9 @@ FROM public.quotes_task
 WHERE "BID"='0'
 GROUP BY "ID"
 ;
+
+-- Комментарий:
+-- нет котировки - это не только 0, но и NULL. 
 	
 	--Число наблюдений по каждой облигации
 SELECT "ID", count ("BID")
@@ -32,4 +39,5 @@ GROUP BY "ID";
  GROUP BY "ID"
  GROUP BY "CPN_DATE";
 
-
+-- Комментарий:
+-- В целом, логика верная. Но нужно составить единый запрос, иначе работать не будет.
