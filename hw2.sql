@@ -29,3 +29,5 @@ SET "BOARDNAME"=public.quotes_task."BOARDNAME",
 FROM public.quotes_task
 WHERE public.quotes_task."ID"=public.listing_task."ID";
 
+-- Комментарий:
+-- похоже на правду, нужно проверить после создания таблиц.
